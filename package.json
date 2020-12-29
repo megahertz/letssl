@@ -1,0 +1,46 @@
+{
+  "name": "letssl",
+  "version": "0.0.1",
+  "description": "Simple way to use SSL using HTTP ACME challenge",
+  "main": "src/index.js",
+  "scripts": {
+    "lint": "eslint 'src/**/*.js' 'e2e/**/*.js'",
+    "test": "humile",
+    "test:e2e": "humile e2e/specs",
+    "test:full": "npm run test && npm run lint && tsc --noEmit --skipLibCheck && npm run test:e2e",
+    "postversion": "git push && git push --tags",
+    "prepack": "npm run test:full",
+    "preversion": "npm run test:full"
+  },
+  "repository": "megahertz/letssl",
+  "files": [
+    "src/*",
+    "!__specs__"
+  ],
+  "keywords": [
+    "ssl",
+    "https",
+    "Let's Encrypt",
+    "acme",
+    "certificate"
+  ],
+  "author": "Alexey Prokhorov",
+  "license": "MIT",
+  "bugs": "https://github.com/megahertz/letssl/issues",
+  "homepage": "https://github.com/megahertz/letssl#readme",
+  "engines": {
+    "node": ">=10.0"
+  },
+  "typings": "src/index.d.ts",
+  "dependencies": {
+    "acme-client": "^4.1.2"
+  },
+  "devDependencies": {
+    "@types/node": "^14.14.16",
+    "eslint": "^7.16.0",
+    "eslint-config-airbnb-base": "^14.2.1",
+    "eslint-plugin-import": "^2.22.1",
+    "humile": "^0.2.20",
+    "typescript": "^4.1.3"
+  }
+}
