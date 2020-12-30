@@ -1,6 +1,6 @@
 'use strict';
 
-const { readCertificateInfo } = require('./acme');
+const { readCertificateInfo } = require('./utils');
 
 class Certificate {
   /**

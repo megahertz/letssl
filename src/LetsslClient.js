@@ -2,10 +2,10 @@
 
 const {
   createPrivateKey,
+  createProvider,
   readCertificateInfo,
-  retrieveCertificate,
-} = require('./acme');
-const Certificate = require('./Certificate');
+} = require('./cerificate');
+const Certificate = require('./cerificate/Certificate');
 const HttpServerChallenge = require('./challenge/HttpServerChallenge');
 const Logger = require('./Logger');
 const Options = require('./Options');
@@ -30,6 +30,7 @@ class LetsslClient {
     });
 
     this.certificate = new Certificate(this.storage, this.options);
+    this.provider = createProvider(this.options);
   }
 
   useBuiltInHttpServer(port = 80) {
@@ -60,16 +61,9 @@ class LetsslClient {
 
       await this.challenge.prepare();
 
-      const [privateKey, certificate] = await retrieveCertificate({
+      const [privateKey, certificate] = await this.provider.getCertificate({
         accountKey: await this.storage.loadAccountKey(createPrivateKey),
-        altNames: this.options.altNames,
-        commonName: this.options.commonName,
-        debugLevel: this.options.debugLevel,
-        directoryUrl: this.options.directoryUrl,
-        email: this.options.email,
-        httpOptions: this.options.httpOptions,
-        onChallengeCreated: this.challenge.onChallengeCreated,
-        onChallengeRemoved: this.challenge.onChallengeRemoved,
+        challenge: this.challenge,
         privateKey: await this.storage.loadPrivateKey(createPrivateKey),
       });
 

@@ -4,7 +4,7 @@ const https = require('https');
 const { describe, expect, it } = require('humile');
 const { getCertificate } = require('../../src');
 const { useTempDir } = require('../../src/__specs__/helpers');
-const { readCertificateInfo } = require('../../src/acme');
+const { readCertificateInfo } = require('../../src/cerificate');
 const usePebble = require('../utils/usePebble');
 
 const PEBBLE_CHALLENGE_PORT = 5002;

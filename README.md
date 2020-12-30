@@ -1,5 +1,5 @@
 # letssl
-[![Tests](https://github.com/megahertz/letssl/workflows/Tests/badge.svg)](https://github.com/megahertz/letssl-v2/actions?query=workflow%3A%22Tests%22)
+[![Tests](https://github.com/megahertz/letssl/workflows/Tests/badge.svg)](https://github.com/megahertz/letssl/actions?query=workflow%3ATests)
 [![npm version](https://img.shields.io/npm/v/letssl?color=brightgreen)](https://www.npmjs.com/package/letssl)
 
 ## Description

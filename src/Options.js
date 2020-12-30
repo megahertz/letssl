@@ -11,6 +11,7 @@ class Options {
     logger = null,
     onCertificateIssued = () => null,
     onCertificateRenewed = () => null,
+    provider = 'acme',
     renewThresholdDays = 30,
     renewInTheFuture = true,
     storageDirPath = null,
@@ -24,6 +25,7 @@ class Options {
     this.logger = (debugLevel && logger === null) ? console : logger;
     this.onCertificateIssued = onCertificateIssued;
     this.onCertificateRenewed = onCertificateRenewed;
+    this.provider = provider;
     this.renewThresholdDays = renewThresholdDays;
     this.renewInTheFuture = renewInTheFuture;
     this.storageDirPath = storageDirPath;

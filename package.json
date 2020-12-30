@@ -5,7 +5,7 @@
   "main": "src/index.js",
   "scripts": {
     "lint": "eslint 'src/**/*.js' 'e2e/**/*.js'",
-    "test": "humile",
+    "test": "humile src",
     "test:e2e": "humile e2e/specs",
     "test:full": "npm run test && npm run lint && tsc --noEmit --skipLibCheck && npm run test:e2e",
     "postversion": "git push && git push --tags",
