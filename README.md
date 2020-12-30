@@ -35,6 +35,38 @@ startServer();
 
 ```
 
+## Testing
+
+There are three ways how certificate obtaining process could be tested.
+
+### Self-signed certificate
+
+When you don't need to test real domain you can set the `provider` option to
+`selfSigned`:
+
+```js
+const [key, cert] = await getCertificate({
+  commonName: 'example.localhost',
+  provider: 'selfSigned',
+});
+```
+
+### Let's Encrypt staging
+
+When `debugLevel` is set and no `directoryUrl` provider,
+https://acme-staging-v02.api.letsencrypt.org/directory is used as `directoryUrl`
+
+const [key, cert] = await getCertificate({
+  commonName: 'stage.example.com',
+  debugLevel: 1, // when > 0 and no directoryUrl, 
+});
+
+### Test ACME server
+
+If you need to run tests frequently, you can use 
+[Pebble](https://github.com/letsencrypt/pebble), a small ACME test server.
+See [the e2e test](e2e/specs/built-in-http.spec.js) for example.
+
 ## Credits
 
  - [acme-client](https://github.com/publishlab/node-acme-client) ACME client

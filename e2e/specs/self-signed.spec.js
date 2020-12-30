@@ -17,8 +17,6 @@ describe('Self-signed certificate', () => {
 
     const info = await readCertificateInfo(certificate);
 
-    console.log(info);
-
     expect(info.domains.commonName).toBe('letssl.localhost');
   });
 });
