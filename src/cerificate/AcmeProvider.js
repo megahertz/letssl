@@ -33,20 +33,29 @@ class AcmeProvider extends Provider {
       }
     }
 
-    const client = new Client({ directoryUrl, accountKey });
+    try {
+      await challenge.prepare();
 
-    const [, csr] = await forge.createCsr({ commonName, altNames }, privateKey);
+      const client = new Client({ directoryUrl, accountKey });
 
-    const certificate = await client.auto({
-      csr,
-      email: this.options.email,
-      termsOfServiceAgreed: true,
-      challengeCreateFn: challenge.onChallengeCreated,
-      challengeRemoveFn: challenge.onChallengeRemoved,
-      challengePriority: ['http-01'],
-    });
+      const [, csr] = await forge.createCsr(
+        { commonName, altNames },
+        privateKey
+      );
 
-    return [privateKey, certificate];
+      const certificate = await client.auto({
+        csr,
+        email: this.options.email,
+        termsOfServiceAgreed: true,
+        challengeCreateFn: challenge.onChallengeCreated,
+        challengeRemoveFn: challenge.onChallengeRemoved,
+        challengePriority: ['http-01'],
+      });
+
+      return [privateKey, certificate];
+    } finally {
+      await challenge.finish();
+    }
   }
 }
 

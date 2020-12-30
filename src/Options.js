@@ -32,10 +32,6 @@ class Options {
   }
 
   validate() {
-    if (!validateUrl(this.directoryUrl)) {
-      throw new Error(`Invalid directoryUrl option "${this.directoryUrl}"`);
-    }
-
     if (!this.commonName) {
       throw new Error('Invalid commonName option');
     }

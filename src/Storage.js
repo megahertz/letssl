@@ -44,6 +44,14 @@ class Storage {
   }
 
   /**
+   * @param {Buffer} buffer
+   * @returns {Promise<void>}
+   */
+  async savePrivateKey(buffer) {
+    await this.save('privateKey', buffer);
+  }
+
+  /**
    * @return {Promise<Buffer | null>}
    */
   async loadCertificate() {

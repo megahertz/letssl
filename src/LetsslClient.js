@@ -59,8 +59,6 @@ class LetsslClient {
     try {
       this.logger.info('No existed certificate. Trying to retrieve a new…');
 
-      await this.challenge.prepare();
-
       const [privateKey, certificate] = await this.provider.getCertificate({
         accountKey: await this.storage.loadAccountKey(createPrivateKey),
         challenge: this.challenge,
@@ -68,6 +66,7 @@ class LetsslClient {
       });
 
       await this.storage.saveCertificate(certificate);
+      await this.storage.savePrivateKey(privateKey);
       await this.options.onCertificateIssued(privateKey, certificate);
       this.logger.info('New certificate issued');
 
@@ -79,8 +78,6 @@ class LetsslClient {
     } catch (e) {
       this.logger.error(e);
       throw e;
-    } finally {
-      await this.challenge.finish();
     }
   }
 
