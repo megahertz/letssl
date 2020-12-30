@@ -1,6 +1,6 @@
 {
   "name": "letssl",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "Simple way to use SSL using HTTP ACME challenge",
   "main": "src/index.js",
   "scripts": {
